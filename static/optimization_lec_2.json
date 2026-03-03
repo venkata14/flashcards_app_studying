@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1,
+    "front": "What is the definition of a convex set?",
+    "back": "A set $C \\subseteq \\mathbb{R}^n$ is convex if for any two points $x, y \\in C$, the entire line segment between them stays in $C$: $tx + (1-t)y \\in C$ for all $0 \\leq t \\leq 1$. Intuitively, every point in the set can \"see\" every other point along a straight path that never leaves the set.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 2,
+    "front": "What is a convex combination, and how does it define the convex hull of a set?",
+    "back": "A convex combination of points $x_1, \\ldots, x_k$ is any weighted sum $\\theta_1 x_1 + \\cdots + \\theta_k x_k$ with $\\theta_i \\geq 0$ and $\\sum_i \\theta_i = 1$ — a generalized average. The convex hull $\\text{conv}(C)$ is the set of all convex combinations of points in $C$; it is the smallest convex set containing $C$.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 3,
+    "front": "What are hyperplanes, halfspaces, and polyhedra, and why are they convex?",
+    "back": "A hyperplane $\\{x : a^T x = b\\}$ and a halfspace $\\{x : a^T x \\leq b\\}$ are both convex because the affine constraint is preserved under convex combinations. A polyhedron $\\{x : Ax \\leq b\\}$ is convex as the intersection of finitely many halfspaces, and intersections of convex sets are always convex.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 4,
+    "front": "What is a convex cone, and how does it differ from an ordinary cone?",
+    "back": "A cone is a set closed under nonnegative scaling: $x \\in C \\Rightarrow tx \\in C$ for all $t \\geq 0$. A **convex cone** additionally satisfies closure under nonnegative combinations: $x_1, x_2 \\in C \\Rightarrow t_1 x_1 + t_2 x_2 \\in C$ for all $t_1, t_2 \\geq 0$. Key examples include the positive semidefinite cone $\\mathbb{S}^n_+$ and norm cones $\\{(x,t) : \\|x\\| \\leq t\\}$.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 5,
+    "front": "What is the normal cone to a set $C$ at a point $x \\in C$?",
+    "back": "The normal cone is $\\mathcal{N}_C(x) = \\{g : g^T x \\geq g^T y \\text{ for all } y \\in C\\}$ — the set of directions that make an obtuse angle with every direction into $C$. It is always a convex cone regardless of whether $C$ itself is convex, and it plays a central role in optimality conditions.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 6,
+    "front": "What does the separating hyperplane theorem say, and why does it matter?",
+    "back": "If $C$ and $D$ are nonempty disjoint convex sets, then there exist $a, b$ such that $C \\subseteq \\{x : a^T x \\leq b\\}$ and $D \\subseteq \\{x : a^T x \\geq b\\}$ — a hyperplane that cleanly separates them. This theorem underpins duality theory and is one of the most powerful structural results about convex sets.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 7,
+    "front": "Which operations on sets are guaranteed to preserve convexity?",
+    "back": "Convexity is preserved by: (1) **intersection** of any collection of convex sets; (2) **scaling and translation** $aC + b$; and (3) **affine images and preimages** — if $f(x) = Ax + b$ and $C$ is convex, then $f(C)$ and $f^{-1}(D)$ are convex. More generally, images and preimages under perspective and linear-fractional maps also preserve convexity.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 8,
+    "front": "What is the definition of a convex function?",
+    "back": "A function $f : \\mathbb{R}^n \\to \\mathbb{R}$ is convex if its domain is a convex set and $f(tx + (1-t)y) \\leq tf(x) + (1-t)f(y)$ for all $x, y \\in \\text{dom}(f)$ and $0 \\leq t \\leq 1$. Geometrically, the chord joining any two points on the graph lies **above** the graph, while concavity (the opposite inequality) means the chord lies **below**.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 9,
+    "front": "How do strictly convex and strongly convex functions strengthen the basic convexity definition?",
+    "back": "**Strictly convex** means the Jensen inequality is strict for $x \\neq y$ and $0 < t < 1$, so the function curves more than a linear function and has at most one minimizer. **Strongly convex** with parameter $m > 0$ means $f - \\frac{m}{2}\\|x\\|_2^2$ is convex — the function curves at least as much as a quadratic. The hierarchy is: strongly convex $\\Rightarrow$ strictly convex $\\Rightarrow$ convex.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 10,
+    "front": "What are the epigraph and sublevel sets of a function, and what convexity properties do they have?",
+    "back": "The **epigraph** is $\\text{epi}(f) = \\{(x, t) : f(x) \\leq t\\}$ — the set of points on or above the graph. A function is convex **if and only if** its epigraph is a convex set. A **sublevel set** $\\{x : f(x) \\leq t\\}$ is always convex when $f$ is convex, but convex sublevel sets alone do not imply $f$ is convex.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 11,
+    "front": "What is the first-order characterization of a differentiable convex function?",
+    "back": "A differentiable $f$ is convex if and only if $f(y) \\geq f(x) + \\nabla f(x)^T(y - x)$ for all $x, y \\in \\text{dom}(f)$. This says the tangent plane at any point is a **global underestimator** of $f$. A powerful consequence: for a differentiable convex function, $\\nabla f(x) = 0 \\Leftrightarrow x$ is a global minimizer.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 12,
+    "front": "What is the second-order characterization of a twice-differentiable convex function?",
+    "back": "A twice-differentiable $f$ is convex if and only if its domain is convex and $\\nabla^2 f(x) \\succeq 0$ (positive semidefinite) for all $x \\in \\text{dom}(f)$. Intuitively, the Hessian controls local curvature — PSD means the function curves upward (or flat) in every direction at every point.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 13,
+    "front": "What does Jensen's inequality say, and what does it mean intuitively?",
+    "back": "For a convex function $f$ and a random variable $X$ supported on $\\text{dom}(f)$: $f(\\mathbb{E}[X]) \\leq \\mathbb{E}[f(X)]$. Intuitively, applying a convex function to an average gives a smaller value than averaging the function's outputs — the function \"penalizes\" variability.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 14,
+    "front": "Which operations on convex functions preserve convexity?",
+    "back": "Key operations: (1) **Nonnegative linear combination** — $\\sum a_i f_i$ with $a_i \\geq 0$; (2) **Pointwise maximum** — $f(x) = \\max_{s \\in S} f_s(x)$ over any (possibly infinite) index set; (3) **Partial minimization** — if $g(x, y)$ is jointly convex and $C$ is convex, then $f(x) = \\min_{y \\in C} g(x, y)$ is convex.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 15,
+    "front": "What are the composition rules for determining when $f = h \\circ g$ is convex?",
+    "back": "For scalar $g$ and $h$, $f = h \\circ g$ is convex if: $h$ is convex & nondecreasing and $g$ is convex, or $h$ is convex & nonincreasing and $g$ is concave. The logic follows the chain rule: $f'' = h''(g)\\,(g')^2 + h'(g)\\,g''$ — we need both terms nonnegative. For vector $g$, replace monotone with \"nondecreasing/nonincreasing in each argument.\"",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 16,
+    "front": "Why is every norm a convex function?",
+    "back": "Any norm $\\|\\cdot\\|$ satisfies the triangle inequality $\\|x + y\\| \\leq \\|x\\| + \\|y\\|$ and absolute homogeneity $\\|tx\\| = |t|\\|x\\|$, which together directly imply the convexity inequality. This covers $\\ell_p$ norms for $p \\geq 1$, the $\\ell_\\infty$ norm, and matrix norms like the operator norm $\\|X\\|_{\\text{op}} = \\sigma_1(X)$ and trace norm $\\|X\\|_{\\text{tr}} = \\sum_i \\sigma_i(X)$.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 17,
+    "front": "What is the log-sum-exp function and how do you prove it is convex?",
+    "back": "The log-sum-exp function is $f(x) = \\log\\sum_{i=1}^n e^{x_i}$, a smooth approximation to $\\max_i x_i$ (hence also called \"softmax\"). Convexity follows from the second-order characterization: the Hessian is $\\nabla^2 f(x) = \\text{diag}(z) - zz^T$ where $z_i = e^{x_i}/\\sum_\\ell e^{x_\\ell}$, which is diagonally dominant and therefore positive semidefinite.",
+    "topic": "Convex Functions",
+    "repeat": false
+  }
+]

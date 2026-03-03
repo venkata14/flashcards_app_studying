@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "front": "What is a closure in JavaScript?",
+    "back": "A closure is a function that retains access to its outer (lexical) scope even after that scope has finished executing. It 'closes over' variables from its surrounding context.",
+    "topic": "JavaScript",
+    "repeat": false
+  },
+  {
+    "id": 2,
+    "front": "What is the difference between `==` and `===` in JavaScript?",
+    "back": "`==` performs type coercion before comparing (loose equality). `===` checks both value and type without coercion (strict equality). Prefer `===` to avoid unexpected behavior.",
+    "topic": "JavaScript",
+    "repeat": true
+  }
+]

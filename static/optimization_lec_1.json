@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "front": "What is the standard form of a mathematical optimization problem?",
+    "back": "The general form is $\\min_{x \\in D} f(x)$ subject to inequality constraints $g_i(x) \\leq 0$ for $i = 1, \\ldots, m$ and equality constraints $h_j(x) = 0$ for $j = 1, \\ldots, r$. The domain $D$ is the intersection of the domains of $f$, all $g_i$, and all $h_j$.",
+    "topic": "Optimization Basics",
+    "repeat": false
+  },
+  {
+    "id": 2,
+    "front": "Beyond finding a solution, what are three reasons to study optimization algorithms deeply?",
+    "back": "First, different algorithms can perform drastically better or worse on the same problem depending on its structure. Second, viewing a statistical procedure through an optimization lens deepens your understanding of why it works. Third, knowledge of optimization can help you formulate entirely new and better problems.",
+    "topic": "Optimization Basics",
+    "repeat": false
+  },
+  {
+    "id": 3,
+    "front": "What is the most important structural distinction in mathematical optimization?",
+    "back": "The key distinction is not between linear and nonlinear problems, but between **convex** and **nonconvex** problems. Convex problems can be solved reliably and efficiently, while nonconvex problems may have many local minima and are generally much harder.",
+    "topic": "Convexity",
+    "repeat": false
+  },
+  {
+    "id": 4,
+    "front": "What makes a set $C \\subseteq \\mathbb{R}^n$ convex?",
+    "back": "A set $C$ is convex if for any two points $x, y \\in C$, the entire line segment between them lies inside $C$: $tx + (1-t)y \\in C$ for all $0 \\leq t \\leq 1$. Intuitively, every point in the set can \"see\" every other point along a straight, unobstructed path that stays within the set.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 5,
+    "front": "What is the definition of a convex function $f : \\mathbb{R}^n \\to \\mathbb{R}$?",
+    "back": "A function $f$ is convex if $\\text{dom}(f)$ is a convex set and $f(tx + (1-t)y) \\leq t f(x) + (1-t) f(y)$ for all $x, y \\in \\text{dom}(f)$ and $0 \\leq t \\leq 1$. Geometrically, the chord connecting any two points on the graph lies **above** the graph.",
+    "topic": "Convex Functions",
+    "repeat": false
+  },
+  {
+    "id": 6,
+    "front": "What conditions make $\\min f(x)$ subject to $g_i(x) \\leq 0$ and $h_j(x) = 0$ a convex optimization problem?",
+    "back": "The problem is convex when the objective $f$ and all inequality constraint functions $g_i$ are convex, and all equality constraints $h_j$ are **affine** (i.e., $h_j(x) = a_j^T x + b_j$). Affine equality constraints are required because a nonlinear equality constraint would generally produce a nonconvex feasible set.",
+    "topic": "Convex Optimization",
+    "repeat": false
+  },
+  {
+    "id": 7,
+    "front": "Why is the fact that local minima are global minima so important for convex optimization?",
+    "back": "For a convex problem, any feasible $x$ that minimizes $f$ within some local neighborhood is guaranteed to be a global minimizer. This means algorithms can never get permanently trapped in a spurious local minimum, which greatly simplifies both algorithm design and theoretical guarantees.",
+    "topic": "Convex Optimization",
+    "repeat": false
+  },
+  {
+    "id": 8,
+    "front": "What is the Lasso problem, and why is it useful when $p \\gg n$?",
+    "back": "The Lasso solves $\\min_{\\beta \\in \\mathbb{R}^p} \\frac{1}{2}\\|y - X\\beta\\|_2^2 + \\lambda\\|\\beta\\|_1$, where $\\lambda \\geq 0$ controls sparsity. When the true $\\beta^*$ has many zero entries, the $\\ell_1$ penalty promotes solutions with exact zeros, enabling recovery of $\\beta^*$ even in the severely underdetermined case $p \\gg n$.",
+    "topic": "Lasso",
+    "repeat": false
+  },
+  {
+    "id": 9,
+    "front": "What are the KKT optimality conditions for the Lasso?",
+    "back": "The conditions require $X^T(y - X\\hat{\\beta}) = \\lambda s$, where $s$ is a subgradient of $\\|\\beta\\|_1$ at $\\hat{\\beta}$: $s_j = \\text{sign}(\\hat{\\beta}_j)$ when $\\hat{\\beta}_j \\neq 0$, and $s_j \\in [-1, 1]$ when $\\hat{\\beta}_j = 0$. These conditions are both necessary and sufficient for $\\hat{\\beta}$ to be a Lasso solution.",
+    "topic": "Lasso",
+    "repeat": false
+  },
+  {
+    "id": 10,
+    "front": "Under what conditions does the Lasso correctly recover the support of $\\beta^*$?",
+    "back": "When the columns of $X$ have low mutual correlations and the nonzero entries of $\\beta^*$ are sufficiently large, the Lasso solution $\\hat{\\beta}$ has exactly the same nonzero support as $\\beta^*$. The proof uses the **primal-dual witness method**: construct a candidate solution from $\\beta^*$ and show it satisfies the KKT conditions with high probability.",
+    "topic": "Lasso",
+    "repeat": false
+  },
+  {
+    "id": 11,
+    "front": "What is a subgradient of a convex function, and why is it needed for the $\\ell_1$ norm?",
+    "back": "A vector $g$ is a subgradient of $f$ at $x$ if $f(y) \\geq f(x) + g^T(y - x)$ for all $y$ — it generalizes the gradient to non-smooth points. The $\\ell_1$ norm $\\|\\beta\\|_1$ is not differentiable wherever any $\\beta_j = 0$, so its KKT conditions are written using the set of subgradients $\\partial\\|\\beta\\|_1$ rather than a single gradient.",
+    "topic": "Optimality Conditions",
+    "repeat": false
+  },
+  {
+    "id": 12,
+    "front": "What does the 2D fused Lasso (total variation denoising) problem do?",
+    "back": "It fits a piecewise-constant signal over a 2D grid by solving $\\min_{\\theta} \\frac{1}{2}\\sum_i (y_i - \\theta_i)^2 + \\lambda \\sum_{(i,j) \\in E} |\\theta_i - \\theta_j|$, where $E$ is the pixel adjacency graph. The $\\ell_1$ penalty on neighboring differences encourages edge-preserving, piecewise-constant reconstructions.",
+    "topic": "Applications",
+    "repeat": false
+  },
+  {
+    "id": 13,
+    "front": "What is the key lesson from comparing ADMM, proximal gradient, and coordinate descent on the 2D fused Lasso?",
+    "back": "No algorithm is universally best — performance depends critically on problem structure. Specialized ADMM converges in ~20 iterations by exploiting structured subproblems, while proximal gradient requires ~1000 iterations due to poor conditioning, and coordinate descent requires ~10,000 cycles due to a large active set.",
+    "topic": "Algorithms",
+    "repeat": false
+  },
+  {
+    "id": 14,
+    "front": "What is the convex hull of a set $C$, and what is its defining property?",
+    "back": "The convex hull $\\text{conv}(C)$ is the set of all convex combinations $\\theta_1 x_1 + \\cdots + \\theta_k x_k$ with $x_i \\in C$, $\\theta_i \\geq 0$, and $\\sum_i \\theta_i = 1$. It is the **smallest convex set containing $C$**: any convex set $B \\supseteq C$ necessarily satisfies $\\text{conv}(C) \\subseteq B$.",
+    "topic": "Convex Sets",
+    "repeat": false
+  },
+  {
+    "id": 15,
+    "front": "How can studying the KKT conditions of a statistical estimator provide deeper insight into its behavior?",
+    "back": "The KKT conditions expose exactly what geometric and structural properties force the solution to behave in a certain way. For the Lasso, the KKT conditions directly explain variable selection: a coefficient is set to zero precisely when the corresponding column of $X$ is not sufficiently correlated with the residual $y - X\\hat{\\beta}$.",
+    "topic": "Optimization Basics",
+    "repeat": false
+  }
+]
