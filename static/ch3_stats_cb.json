@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "front": "What does it mean for a distribution family to be *parametric*, and why is this useful?",
+    "back": "A parametric family is indexed by one or more parameters that shift characteristics (like the mean) while keeping the same functional form. This lets us say 'X is normal' without fixing every detail — we leave the mean or variance as unknown quantities to be estimated.",
+    "topic": "Distribution Families",
+    "repeat": false
+  },
+  {
+    "id": 2,
+    "front": "What is the pmf of the discrete uniform$(1, N)$ distribution, and what are its mean and variance?",
+    "back": "Each outcome $x \\in \\{1, \\ldots, N\\}$ gets probability $1/N$. The mean is $\\mathrm{E}X = (N+1)/2$ and the variance is $\\mathrm{Var}\\,X = (N+1)(N-1)/12$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 3,
+    "front": "Describe the urn-model setup that gives rise to the hypergeometric distribution.",
+    "back": "An urn holds $N$ balls, $M$ red and $N-M$ green. We draw $K$ balls without replacement. The number of red balls $X$ in the sample follows the hypergeometric$(N, M, K)$ distribution, with mean $KM/N$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 4,
+    "front": "What is the hypergeometric pmf, and what is the key structural difference from the binomial?",
+    "back": "$P(X=x) = \\binom{M}{x}\\binom{N-M}{K-x}/\\binom{N}{K}$. Unlike the binomial, trials are *not* independent — sampling is without replacement from a finite population, so each draw changes the composition of the urn.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 5,
+    "front": "What is a Bernoulli trial, and how does summing $n$ independent Bernoulli$(p)$ trials produce a binomial random variable?",
+    "back": "A Bernoulli trial has exactly two outcomes: success (probability $p$) and failure (probability $1-p$). The total number of successes $Y = \\sum_{i=1}^n X_i$ in $n$ independent trials follows a binomial$(n, p)$ distribution.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 6,
+    "front": "State the binomial pmf, mean, and variance.",
+    "back": "$P(Y=y\\mid n,p) = \\binom{n}{y}p^y(1-p)^{n-y}$ for $y=0,1,\\ldots,n$. The mean is $\\mathrm{E}Y = np$ and the variance is $\\mathrm{Var}\\,Y = np(1-p)$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 7,
+    "front": "What is the mgf of the binomial$(n, p)$ distribution?",
+    "back": "$M_X(t) = [pe^t + (1-p)]^n$. This follows from expanding $(pe^t + (1-p))^n$ using the Binomial Theorem, treating each term as a probability-weighted contribution.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 8,
+    "front": "What is the Poisson distribution and when is it a useful model?",
+    "back": "A random variable $X$ has a Poisson$(\\lambda)$ distribution if $P(X=x) = e^{-\\lambda}\\lambda^x / x!$ for $x = 0, 1, \\ldots$ The Poisson is appropriate when counting rare, independent arrivals over a continuous interval — like buses arriving or typos per page.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 9,
+    "front": "What are the mean, variance, and mgf of the Poisson$(\\lambda)$ distribution, and what is remarkable about the mean and variance?",
+    "back": "$\\mathrm{E}X = \\mathrm{Var}\\,X = \\lambda$ — the single parameter $\\lambda$ plays both roles simultaneously. The mgf is $M_X(t) = e^{\\lambda(e^t - 1)}$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 10,
+    "front": "Under what conditions does the Poisson distribution approximate the binomial, and what parameter should be used?",
+    "back": "When $n$ is large and $p$ is small (so that rare events are being counted), binomial$(n,p) \\approx$ Poisson$(\\lambda)$ with $\\lambda = np$. The approximation works because the binomial recursion converges to the Poisson recursion as $n \\to \\infty, p \\to 0$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 11,
+    "front": "What is the negative binomial distribution, and how does it differ conceptually from the binomial?",
+    "back": "The binomial counts successes in a *fixed* number of trials; the negative binomial counts *trials needed* to achieve a fixed number of successes $r$. If $Y$ = number of failures before the $r$-th success, then $P(Y=y) = \\binom{r+y-1}{y}p^r(1-p)^y$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 12,
+    "front": "What are the mean and variance of the negative binomial$(r, p)$ distribution (in the failures parameterization)?",
+    "back": "$\\mathrm{E}Y = r(1-p)/p$ and $\\mathrm{Var}\\,Y = r(1-p)/p^2$. Notably, $\\mathrm{Var}\\,Y = \\mu + \\mu^2/r$ where $\\mu = \\mathrm{E}Y$, so the variance is a *quadratic* function of the mean.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 13,
+    "front": "What is the geometric distribution and how is it a special case of the negative binomial?",
+    "back": "The geometric distribution is the negative binomial with $r = 1$: $P(X = x \\mid p) = p(1-p)^{x-1}$ for $x = 1, 2, \\ldots$ It models the trial number of the *first* success, with mean $1/p$ and variance $(1-p)/p^2$.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 14,
+    "front": "What is the memoryless property of the geometric distribution?",
+    "back": "For integers $s > t$, $P(X > s \\mid X > t) = P(X > s - t)$. The distribution 'forgets' how many failures have already occurred — the remaining waiting time has the same distribution as if we were starting fresh.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 15,
+    "front": "What is the pdf, mean, and variance of the continuous uniform$(a, b)$ distribution?",
+    "back": "$f(x) = 1/(b-a)$ for $x \\in [a, b]$, zero otherwise. The mean is $(a+b)/2$ (the midpoint) and the variance is $(b-a)^2/12$.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 16,
+    "front": "What is the gamma function $\\Gamma(\\alpha)$, and what key recursion does it satisfy?",
+    "back": "$\\Gamma(\\alpha) = \\int_0^\\infty t^{\\alpha-1}e^{-t}\\,dt$. It satisfies $\\Gamma(\\alpha+1) = \\alpha\\,\\Gamma(\\alpha)$, which implies $\\Gamma(n) = (n-1)!$ for positive integers — the gamma function generalizes the factorial.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 17,
+    "front": "State the gamma$(\\alpha, \\beta)$ pdf and identify what each parameter controls.",
+    "back": "$f(x\\mid\\alpha,\\beta) = \\frac{1}{\\Gamma(\\alpha)\\beta^\\alpha}x^{\\alpha-1}e^{-x/\\beta}$ for $x > 0$. The *shape* parameter $\\alpha$ controls peakedness, and the *scale* parameter $\\beta$ controls spread. Mean $= \\alpha\\beta$, Variance $= \\alpha\\beta^2$.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 18,
+    "front": "What technique does Casella & Berger use to evaluate $\\mathrm{E}X$ for a gamma distribution without brute-force integration?",
+    "back": "They recognize the integrand $x \\cdot x^{\\alpha-1}e^{-x/\\beta} = x^{(\\alpha+1)-1}e^{-x/\\beta}$ as the *kernel* of a gamma$(\\alpha+1, \\beta)$ pdf. Since the kernel integrates to $\\Gamma(\\alpha+1)\\beta^{\\alpha+1}$, the expectation evaluates cleanly to $\\alpha\\beta$. This kernel-recognition trick recurs throughout the book.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 19,
+    "front": "What two important special cases arise from the gamma distribution?",
+    "back": "Setting $\\alpha = p/2$ and $\\beta = 2$ gives the **chi-squared distribution** with $p$ degrees of freedom, central to statistical inference. Setting $\\alpha = 1$ gives the **exponential distribution** $f(x) = (1/\\beta)e^{-x/\\beta}$, which models memoryless waiting times.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 20,
+    "front": "The exponential distribution is the continuous analogue of the geometric. What property do they share?",
+    "back": "Both are *memoryless*: for the exponential, $P(X > s \\mid X > t) = P(X > s - t)$ for $s > t \\geq 0$. This means the distribution has no 'aging' — past survival gives no information about future survival.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 21,
+    "front": "State three reasons the normal distribution plays a central role in statistics.",
+    "back": "(1) It is analytically tractable — calculations are clean. (2) Its bell-shaped symmetry makes it a natural population model. (3) The Central Limit Theorem guarantees that sums of independent random variables are approximately normal, giving it broad applicability.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 22,
+    "front": "State the normal$(\\mu, \\sigma^2)$ pdf and explain the standardization $Z = (X-\\mu)/\\sigma$.",
+    "back": "$f(x\\mid\\mu,\\sigma^2) = \\frac{1}{\\sqrt{2\\pi}\\sigma}e^{-(x-\\mu)^2/(2\\sigma^2)}$. The transformation $Z = (X-\\mu)/\\sigma$ maps any normal to the standard normal $n(0,1)$, so all probabilities reduce to a single table.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 23,
+    "front": "Why can't $\\int_{-\\infty}^\\infty e^{-z^2/2}\\,dz$ be computed via antiderivatives, and how is it evaluated?",
+    "back": "The function $e^{-z^2/2}$ has no closed-form antiderivative. The integral is evaluated by squaring it, converting to polar coordinates, and showing the double integral equals $\\pi$ — hence the single integral equals $\\sqrt{2\\pi}$.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 24,
+    "front": "What is the 68-95-99.7 rule for the normal distribution?",
+    "back": "$P(|X-\\mu| \\leq \\sigma) \\approx 0.6826$, $P(|X-\\mu| \\leq 2\\sigma) \\approx 0.9544$, $P(|X-\\mu| \\leq 3\\sigma) \\approx 0.9974$. In practice these are rounded to $.68$, $.95$, $.99$.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 25,
+    "front": "What is the continuity correction, and why does it improve the normal approximation to the binomial?",
+    "back": "Because binomial probabilities correspond to bar areas (each integer $k$ represents the interval $[k-\\tfrac{1}{2}, k+\\tfrac{1}{2}]$), using $P(X \\leq k) \\approx P(Y \\leq k + \\tfrac{1}{2})$ captures the full bar. Without it, the approximation systematically misses half a bar's area.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 26,
+    "front": "What is the beta distribution and why is it a natural choice for modeling proportions?",
+    "back": "The beta$(\\alpha,\\beta)$ distribution is supported on $(0,1)$ with pdf $f(x) \\propto x^{\\alpha-1}(1-x)^{\\beta-1}$. Because its support is exactly the unit interval, it directly models probabilities, proportions, or any quantity bounded between 0 and 1.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 27,
+    "front": "What is the beta function $B(\\alpha, \\beta)$ and how does it relate to the gamma function?",
+    "back": "$B(\\alpha,\\beta) = \\int_0^1 x^{\\alpha-1}(1-x)^{\\beta-1}\\,dx$. The key identity is $B(\\alpha,\\beta) = \\Gamma(\\alpha)\\Gamma(\\beta)/\\Gamma(\\alpha+\\beta)$, which is what normalizes the beta pdf and is used for all beta moment calculations.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 28,
+    "front": "State the mean and variance of the beta$(\\alpha, \\beta)$ distribution.",
+    "back": "$\\mathrm{E}X = \\alpha/(\\alpha+\\beta)$ and $\\mathrm{Var}\\,X = \\alpha\\beta / [(\\alpha+\\beta)^2(\\alpha+\\beta+1)]$. These are derived by recognizing integrands as kernels of higher-order beta distributions.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 29,
+    "front": "What is the Cauchy distribution, and what makes it pathological compared to the normal?",
+    "back": "The Cauchy has pdf $f(x\\mid\\theta) = [\\pi(1+(x-\\theta)^2)]^{-1}$, and looks bell-shaped. However, $\\mathrm{E}|X| = \\infty$, so *no moments exist* — not even the mean. Its heavy tails make it a standard test case against results that assume finite moments.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 30,
+    "front": "What is a lognormal distribution and when is it useful?",
+    "back": "If $\\log X \\sim n(\\mu, \\sigma^2)$, then $X$ is lognormal. It models positively skewed data (like incomes) because taking logs produces normality, allowing normal-theory methods to apply on the log scale. Mean $= e^{\\mu + \\sigma^2/2}$.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 31,
+    "front": "What defines an *exponential family* of distributions, and what is the significance of the form?",
+    "back": "A family is exponential if $f(x\\mid\\boldsymbol{\\theta}) = h(x)c(\\boldsymbol{\\theta})\\exp\\!\\left(\\sum_{i=1}^k w_i(\\boldsymbol{\\theta})\\,t_i(x)\\right)$. The form separates data-dependent ($h, t_i$) and parameter-dependent ($c, w_i$) parts, which produces powerful statistical properties like sufficient statistics and tractable moment calculations.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 32,
+    "front": "Show at a high level why the binomial is an exponential family.",
+    "back": "Write $\\binom{n}{x}p^x(1-p)^{n-x} = \\binom{n}{x}(1-p)^n \\exp\\!\\left[x\\log\\frac{p}{1-p}\\right]$. Here $h(x)=\\binom{n}{x}$, $c(p)=(1-p)^n$, $w_1(p) = \\log[p/(1-p)]$ (the log-odds), and $t_1(x)=x$.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 33,
+    "front": "State Theorem 3.4.2: the moment identity for exponential families.",
+    "back": "$\\mathrm{E}\\!\\left[\\sum_i \\frac{\\partial w_i}{\\partial\\theta_j}t_i(X)\\right] = -\\frac{\\partial}{\\partial\\theta_j}\\log c(\\boldsymbol{\\theta})$. This replaces integration/summation with *differentiation* of $\\log c$, making moment calculations algebraic rather than analytic.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 34,
+    "front": "What is the *natural parameterization* of an exponential family, and what is the natural parameter space?",
+    "back": "Replace $w_i(\\boldsymbol{\\theta})$ with $\\eta_i$ directly: $f(x\\mid\\boldsymbol{\\eta}) = h(x)c^*(\\boldsymbol{\\eta})\\exp(\\sum_i \\eta_i t_i(x))$. The natural parameter space $\\mathcal{H}$ consists of all $\\boldsymbol{\\eta}$ for which the density integrates to 1; it is always a convex set.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 35,
+    "front": "What is a *curved* vs. *full* exponential family?",
+    "back": "In a full family, the dimension of the parameter $\\boldsymbol{\\theta}$ equals $k$ (the number of sufficient statistics). A curved family has dimension $d < k$ — the parameter vector is constrained to a lower-dimensional curve or surface inside the natural parameter space.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 36,
+    "front": "What critical condition must hold for a family with a parameter-dependent support to be an exponential family?",
+    "back": "The support $\\{x : f(x\\mid\\theta) > 0\\}$ must *not depend on $\\theta$*. For example, the shifted exponential $f(x\\mid\\theta) = e^{-(x-\\theta)}$ for $x \\geq \\theta$ fails this condition, because the lower endpoint of the support moves with $\\theta$.",
+    "topic": "Exponential Families",
+    "repeat": false
+  },
+  {
+    "id": 37,
+    "front": "What is a *location family*, and what does the location parameter $\\mu$ do geometrically?",
+    "back": "Starting from any pdf $f(x)$, the location family is $\\{f(x-\\mu) : \\mu \\in \\mathbb{R}\\}$. Increasing $\\mu$ simply *slides* the graph of $f$ to the right without changing its shape — $\\mu$ shifts the center of the distribution.",
+    "topic": "Location-Scale Families",
+    "repeat": false
+  },
+  {
+    "id": 38,
+    "front": "What is a *scale family*, and what does the scale parameter $\\sigma$ do geometrically?",
+    "back": "Starting from any pdf $f(x)$, the scale family is $\\{(1/\\sigma)f(x/\\sigma) : \\sigma > 0\\}$. Larger $\\sigma$ *stretches* the graph horizontally while maintaining the same shape and keeping it centered at 0.",
+    "topic": "Location-Scale Families",
+    "repeat": false
+  },
+  {
+    "id": 39,
+    "front": "State Theorem 3.5.6: the random-variable representation of a location-scale family.",
+    "back": "$X$ has pdf $(1/\\sigma)f((x-\\mu)/\\sigma)$ if and only if there exists $Z$ with pdf $f(z)$ and $X = \\sigma Z + \\mu$. This means any location-scale member is just a rescaled and shifted version of the *standard* random variable $Z$.",
+    "topic": "Location-Scale Families",
+    "repeat": false
+  },
+  {
+    "id": 40,
+    "front": "If $X$ is in a location-scale family with standard variable $Z$ satisfying $\\mathrm{E}Z=0$, $\\mathrm{Var}Z=1$, what are $\\mathrm{E}X$ and $\\mathrm{Var}X$?",
+    "back": "By Theorem 3.5.7, $\\mathrm{E}X = \\sigma \\cdot 0 + \\mu = \\mu$ and $\\mathrm{Var}X = \\sigma^2 \\cdot 1 = \\sigma^2$. So $\\mu$ and $\\sigma^2$ are literally the mean and variance — a clean interpretation that holds for the normal and double exponential.",
+    "topic": "Location-Scale Families",
+    "repeat": false
+  },
+  {
+    "id": 41,
+    "front": "State Chebychev's Inequality in its general form.",
+    "back": "For any random variable $X$ and nonnegative function $g$, and any $r > 0$: $P(g(X) \\geq r) \\leq \\mathrm{E}g(X)/r$. The proof simply restricts the expectation integral to the set where $g(X) \\geq r$ and lower-bounds $g$ by $r$ there.",
+    "topic": "Inequalities",
+    "repeat": false
+  },
+  {
+    "id": 42,
+    "front": "What is the standard probabilistic consequence of Chebychev's Inequality?",
+    "back": "Taking $g(x) = (x-\\mu)^2/\\sigma^2$ gives $P(|X-\\mu| \\geq t\\sigma) \\leq 1/t^2$ for any distribution with mean $\\mu$ and variance $\\sigma^2$. For $t=2$: at least 75% of probability lies within $2\\sigma$ of the mean, regardless of the distribution.",
+    "topic": "Inequalities",
+    "repeat": false
+  },
+  {
+    "id": 43,
+    "front": "Why is Chebychev's Inequality powerful yet conservative?",
+    "back": "It is powerful because it applies to *any* distribution with finite variance — no distributional assumptions needed. It is conservative because it provides a universal worst-case bound; for specific distributions (like the normal), much tighter bounds are available.",
+    "topic": "Inequalities",
+    "repeat": false
+  },
+  {
+    "id": 44,
+    "front": "State Stein's Lemma for the normal distribution.",
+    "back": "If $X \\sim n(\\theta, \\sigma^2)$ and $g$ is differentiable with $\\mathrm{E}|g'(X)| < \\infty$, then $\\mathrm{E}[g(X)(X-\\theta)] = \\sigma^2 \\mathrm{E}g'(X)$. This converts expectations of $g(X)(X-\\theta)$ into expectations of $g'(X)$, greatly simplifying higher-order moment calculations.",
+    "topic": "Inequalities",
+    "repeat": false
+  },
+  {
+    "id": 45,
+    "front": "Illustrate Stein's Lemma by computing $\\mathrm{E}X^3$ for $X \\sim n(\\theta, \\sigma^2)$.",
+    "back": "Take $g(x)=x^2$, so $g'(x)=2x$. Then $\\mathrm{E}[X^2(X-\\theta)] = \\sigma^2 \\mathrm{E}[2X]$, i.e., $\\mathrm{E}X^3 - \\theta\\,\\mathrm{E}X^2 = 2\\sigma^2\\,\\mathrm{E}X$. Substituting $\\mathrm{E}X=\\theta$, $\\mathrm{E}X^2=\\sigma^2+\\theta^2$ gives $\\mathrm{E}X^3 = 3\\theta\\sigma^2 + \\theta^3$.",
+    "topic": "Inequalities",
+    "repeat": false
+  },
+  {
+    "id": 46,
+    "front": "What is the Gamma–Poisson relationship (Theorem 3.3.1)?",
+    "back": "If $X \\sim \\mathrm{gamma}(\\alpha, \\beta)$ with $\\alpha$ a positive integer and $Y \\sim \\mathrm{Poisson}(x/\\beta)$, then $P(X \\leq x) = P(Y \\geq \\alpha)$. This links the continuous gamma CDF to discrete Poisson tail probabilities.",
+    "topic": "Distribution Relationships",
+    "repeat": false
+  },
+  {
+    "id": 47,
+    "front": "In what sense does the negative binomial include the Poisson as a limiting case?",
+    "back": "If $r \\to \\infty$ and $p \\to 1$ such that $r(1-p) \\to \\lambda$, then both the mean $r(1-p)/p$ and variance $r(1-p)/p^2$ converge to $\\lambda$, matching Poisson moments. The mgfs also converge, confirming the distributional limit.",
+    "topic": "Distribution Relationships",
+    "repeat": false
+  },
+  {
+    "id": 48,
+    "front": "What recursion relation speeds up calculation of Poisson probabilities?",
+    "back": "$P(X = x) = (\\lambda/x)\\,P(X = x-1)$ for $x = 1, 2, \\ldots$ Starting from $P(X=0) = e^{-\\lambda}$, each subsequent probability is obtained by multiplying by $\\lambda/x$ — avoiding repeated factorial computation.",
+    "topic": "Discrete Distributions",
+    "repeat": false
+  },
+  {
+    "id": 49,
+    "front": "What is $\\Gamma(1/2)$ and how is it derived?",
+    "back": "$\\Gamma(1/2) = \\sqrt{\\pi}$. This follows from the change of variables $w = z^2/2$ in the integral $\\int_0^\\infty e^{-z^2/2}\\,dz = \\sqrt{\\pi/2}$, which in turn comes from the polar-coordinate proof that the standard normal integrates to 1.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  },
+  {
+    "id": 50,
+    "front": "What is the double exponential (Laplace) distribution and what distinguishes it from the normal?",
+    "back": "$f(x\\mid\\mu,\\sigma) = \\frac{1}{2\\sigma}e^{-|x-\\mu|/\\sigma}$, formed by reflecting the exponential about $\\mu$. It has mean $\\mu$ and variance $2\\sigma^2$, but unlike the normal it has a sharp *cusp* (non-differentiable peak) at $x=\\mu$ and heavier, symmetric tails.",
+    "topic": "Continuous Distributions",
+    "repeat": false
+  }
+]
